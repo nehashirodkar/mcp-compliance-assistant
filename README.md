@@ -39,7 +39,7 @@
 ## ⟡ Architecture
 
 ```mermaid
-%%{init: {'theme':'neutral','themeVariables':{'fontSize':'15px'}}}%%
+%%{init: {'theme':'dark','themeVariables':{'fontSize':'15px'}}}%%
 flowchart LR
     U([User / Compliance Q]):::io --> A
     DEMO[/Single-page demo/]:::io --> A
@@ -67,13 +67,13 @@ flowchart LR
     H --> AUD[(Append-only<br/>audit log)]:::store
     A --> U
 
-    classDef io fill:#c4b5fd,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
-    classDef agent fill:#ddd6fe,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
-    classDef tool fill:#a5f3fc,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
-    classDef store fill:#f5d0fe,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
-    classDef policy fill:#fde047,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
-    classDef hitl fill:#fca5a5,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
-    classDef ok fill:#86efac,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
+    classDef io fill:#5b21b6,stroke:#c4b5fd,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef agent fill:#6d28d9,stroke:#ddd6fe,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef tool fill:#0e7490,stroke:#a5f3fc,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef store fill:#a21caf,stroke:#f5d0fe,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef policy fill:#a16207,stroke:#fde047,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef hitl fill:#b91c1c,stroke:#fecaca,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef ok fill:#15803d,stroke:#bbf7d0,stroke-width:2px,color:#ffffff,font-weight:bold;
 ```
 
 ## ⟡ Demo
