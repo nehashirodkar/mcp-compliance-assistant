@@ -39,32 +39,46 @@
 ## ⟡ Architecture
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{
+  'fontSize':'16px','fontFamily':'monospace',
+  'primaryColor':'#ede9fe','primaryTextColor':'#1e1b2e','primaryBorderColor':'#7c3aed',
+  'lineColor':'#7c3aed','textColor':'#1e1b2e',
+  'clusterBkg':'#faf5ff','clusterBorder':'#7c3aed',
+  'edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-    U([User / Compliance Q]) --> A
-    DEMO[/single-page demo/] --> A
+    U([User / Compliance Q]):::io --> A
+    DEMO[/Single-page demo/]:::io --> A
 
     subgraph AGENT["LangGraph Agent · Claude Sonnet 4.6"]
-        A[ReAct loop] --> R[retry guard]
-        A <--> M[(session +<br/>vector memory)]
+        A[ReAct loop]:::agent --> R[Retry guard]:::agent
+        A <--> M[(Session +<br/>vector memory)]:::store
     end
 
     R -- stdio / MCP --> S
 
     subgraph S["MCP Server"]
-        T1[regulatory_clause_lookup]
-        T2[compliance_risk_score]
-        T3[resolve_entity]
+        T1[regulatory_clause_lookup]:::tool
+        T2[compliance_risk_score]:::tool
+        T3[resolve_entity]:::tool
     end
 
-    T1 --> C[(Chroma · local embeddings<br/>BSA/CIP/OFAC/FATF corpus)]
-    T3 --> E[(AML entity /<br/>watchlist table)]
-    T2 -. internal .-> T3
+    T1 --> C[(Chroma · local embeddings<br/>BSA / CIP / OFAC / FATF corpus)]:::store
+    T3 --> E[(AML entity /<br/>watchlist table)]:::store
+    T2 -. resolves internally .-> T3
 
-    A -- risk score --> P{escalation<br/>policy}
-    P -- sanctioned / PEP / HIGH --> H[FastAPI HITL webhook<br/>API-key · rate-limit · req-id]
-    P -- clean --> CLR[auto-cleared]
-    H --> AUD[(append-only<br/>audit log)]
+    A -- risk score --> P{Escalation<br/>policy}:::policy
+    P -- sanctioned / PEP / HIGH --> H[FastAPI HITL webhook<br/>API-key · rate-limit · req-id]:::hitl
+    P -- clean --> CLR[Auto-cleared]:::ok
+    H --> AUD[(Append-only<br/>audit log)]:::store
     A --> U
+
+    classDef io fill:#c4b5fd,stroke:#5b21b6,stroke-width:2px,color:#1e1b2e,font-weight:bold;
+    classDef agent fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#1e1b2e,font-weight:bold;
+    classDef tool fill:#cffafe,stroke:#0e7490,stroke-width:2px,color:#0c2e34,font-weight:bold;
+    classDef store fill:#fae8ff,stroke:#a21caf,stroke-width:2px,color:#3b0764,font-weight:bold;
+    classDef policy fill:#fef9c3,stroke:#a16207,stroke-width:2px,color:#422006,font-weight:bold;
+    classDef hitl fill:#fecaca,stroke:#b91c1c,stroke-width:2px,color:#450a0a,font-weight:bold;
+    classDef ok fill:#bbf7d0,stroke:#15803d,stroke-width:2px,color:#052e16,font-weight:bold;
 ```
 
 ## ⟡ Demo
