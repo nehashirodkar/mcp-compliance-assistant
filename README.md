@@ -42,7 +42,7 @@
 
 ## ⟡ Demo
 
-A single-page UI (cyber-noir, no build step): type a compliance question and watch the agent **resolve → score → cite → escalate** in real time, with the full tool trace and the escalation decision.
+A single-page UI (no build step): type a compliance question and watch the agent **resolve → score → cite → escalate** in real time, with the full tool trace and the escalation decision.
 
 ```powershell
 .venv\Scripts\python.exe -m uvicorn demo.app:app --port 8802
