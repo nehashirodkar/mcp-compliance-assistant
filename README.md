@@ -39,12 +39,7 @@
 ## ⟡ Architecture
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{
-  'fontSize':'16px','fontFamily':'monospace',
-  'primaryColor':'#ede9fe','primaryTextColor':'#1e1b2e','primaryBorderColor':'#7c3aed',
-  'lineColor':'#7c3aed','textColor':'#1e1b2e',
-  'clusterBkg':'#faf5ff','clusterBorder':'#7c3aed',
-  'edgeLabelBackground':'#ffffff'}}}%%
+%%{init: {'theme':'neutral','themeVariables':{'fontSize':'15px'}}}%%
 flowchart LR
     U([User / Compliance Q]):::io --> A
     DEMO[/Single-page demo/]:::io --> A
@@ -72,13 +67,13 @@ flowchart LR
     H --> AUD[(Append-only<br/>audit log)]:::store
     A --> U
 
-    classDef io fill:#c4b5fd,stroke:#5b21b6,stroke-width:2px,color:#1e1b2e,font-weight:bold;
-    classDef agent fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#1e1b2e,font-weight:bold;
-    classDef tool fill:#cffafe,stroke:#0e7490,stroke-width:2px,color:#0c2e34,font-weight:bold;
-    classDef store fill:#fae8ff,stroke:#a21caf,stroke-width:2px,color:#3b0764,font-weight:bold;
-    classDef policy fill:#fef9c3,stroke:#a16207,stroke-width:2px,color:#422006,font-weight:bold;
-    classDef hitl fill:#fecaca,stroke:#b91c1c,stroke-width:2px,color:#450a0a,font-weight:bold;
-    classDef ok fill:#bbf7d0,stroke:#15803d,stroke-width:2px,color:#052e16,font-weight:bold;
+    classDef io fill:#c4b5fd,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
+    classDef agent fill:#ddd6fe,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
+    classDef tool fill:#a5f3fc,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
+    classDef store fill:#f5d0fe,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
+    classDef policy fill:#fde047,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
+    classDef hitl fill:#fca5a5,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
+    classDef ok fill:#86efac,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold;
 ```
 
 ## ⟡ Demo
@@ -86,8 +81,8 @@ flowchart LR
 A single-page UI (cyber-noir, no build step): type a compliance question and watch the agent **resolve → score → cite → escalate** in real time, with the full tool trace and the escalation decision.
 
 ```powershell
-.venv\Scripts\python.exe -m uvicorn demo.app:app --port 8801
-# open http://127.0.0.1:8801
+.venv\Scripts\python.exe -m uvicorn demo.app:app --port 8802
+# open http://127.0.0.1:8802   (any free port works; matches the demo gif)
 ```
 
 | Query | Behavior |
@@ -118,7 +113,7 @@ notepad $HOME\.mcp-compliance.env
 
 # 3. Test  ·  4. Demo  ·  5. MCP server standalone
 .venv\Scripts\python.exe -m pytest -q
-.venv\Scripts\python.exe -m uvicorn demo.app:app --port 8801
+.venv\Scripts\python.exe -m uvicorn demo.app:app --port 8802
 .venv\Scripts\python.exe -m mcp_server.server
 ```
 
@@ -189,5 +184,5 @@ tests/        48 tests — tools, retrieval, agent, memory, HITL, security
 
 <div align="center">
 <br/>
-<sub>Built with the Claude Agent SDK · cyber-noir · EST. 2026</sub>
+<sub>Built by <a href="https://github.com/nehashirodkar">Neha Shirodkar</a> with the Claude Agent SDK</sub>
 </div>
