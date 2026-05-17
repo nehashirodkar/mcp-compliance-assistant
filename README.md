@@ -38,34 +38,7 @@
 
 ## ⟡ Architecture
 
-```mermaid
-flowchart LR
-    U([User / Compliance Q]) --> A
-    DEMO[/Single-page demo/] --> A
-
-    subgraph AGENT["LangGraph Agent - Claude Sonnet 4.6"]
-        A[ReAct loop] --> R[Retry guard]
-        A <--> M[(Session + vector memory)]
-    end
-
-    R -- stdio / MCP --> S
-
-    subgraph S["MCP Server"]
-        T1[regulatory_clause_lookup]
-        T2[compliance_risk_score]
-        T3[resolve_entity]
-    end
-
-    T1 --> C[(Chroma - local embeddings<br/>BSA / CIP / OFAC / FATF corpus)]
-    T3 --> E[(AML entity / watchlist table)]
-    T2 -. resolves internally .-> T3
-
-    A -- risk score --> P{Escalation policy}
-    P -- sanctioned / PEP / HIGH --> H[FastAPI HITL webhook<br/>API-key, rate-limit, req-id]
-    P -- clean --> CLR[Auto-cleared]
-    H --> AUD[(Append-only audit log)]
-    A --> U
-```
+<img src="assets/architecture.svg" alt="Architecture: user/demo → LangGraph agent → MCP server (3 tools) → Chroma + entity table; agent → escalation policy → HITL webhook + audit log, or auto-cleared" width="100%" />
 
 ## ⟡ Demo
 

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <rect width="1240" height="470" fill="#ffffff"/>
+
+  <!-- containers -->
+  <rect x="250" y="30" width="330" height="215" rx="10" fill="#f7f5fc" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="265" y="52" font-size="14" font-weight="700" fill="#111111">LangGraph Agent — Claude Sonnet 4.6</text>
+
+  <rect x="640" y="30" width="320" height="215" rx="10" fill="#f7f5fc" stroke="#0e7490" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="655" y="52" font-size="14" font-weight="700" fill="#111111">MCP Server</text>
+
+  <!-- helper boxes via repeated rect+text -->
+  <!-- IO -->
+  <rect x="30" y="70" width="185" height="46" rx="8" fill="#ddd6fe" stroke="#5b21b6" stroke-width="1.5"/>
+  <text x="122" y="98" font-size="14" font-weight="600" fill="#111111" text-anchor="middle">User / Compliance Q</text>
+
+  <rect x="30" y="150" width="185" height="46" rx="8" fill="#ddd6fe" stroke="#5b21b6" stroke-width="1.5"/>
+  <text x="122" y="178" font-size="14" font-weight="600" fill="#111111" text-anchor="middle">Single-page demo</text>
+
+  <!-- agent inner -->
+  <rect x="272" y="68" width="140" height="46" rx="8" fill="#e9e3fb" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="342" y="96" font-size="14" font-weight="600" fill="#111111" text-anchor="middle">ReAct loop</text>
+
+  <rect x="432" y="68" width="128" height="46" rx="8" fill="#e9e3fb" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="496" y="96" font-size="14" font-weight="600" fill="#111111" text-anchor="middle">Retry guard</text>
+
+  <rect x="292" y="160" width="248" height="46" rx="8" fill="#fae3fb" stroke="#a21caf" stroke-width="1.5"/>
+  <text x="416" y="188" font-size="13.5" font-weight="600" fill="#111111" text-anchor="middle">Session + vector memory</text>
+
+  <!-- server inner -->
+  <rect x="660" y="68" width="282" height="44" rx="8" fill="#d2eff5" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="801" y="95" font-size="13.5" font-weight="600" fill="#111111" text-anchor="middle">regulatory_clause_lookup</text>
+
+  <rect x="660" y="120" width="282" height="44" rx="8" fill="#d2eff5" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="801" y="147" font-size="13.5" font-weight="600" fill="#111111" text-anchor="middle">compliance_risk_score</text>
+
+  <rect x="660" y="180" width="282" height="46" rx="8" fill="#d2eff5" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="801" y="208" font-size="13.5" font-weight="600" fill="#111111" text-anchor="middle">resolve_entity</text>
+
+  <!-- data stores -->
+  <rect x="1010" y="58" width="210" height="64" rx="8" fill="#fae3fb" stroke="#a21caf" stroke-width="1.5"/>
+  <text x="1115" y="83" font-size="13" font-weight="600" fill="#111111" text-anchor="middle">Chroma — local embeddings</text>
+  <text x="1115" y="103" font-size="12.5" fill="#111111" text-anchor="middle">BSA / CIP / OFAC / FATF corpus</text>
+
+  <rect x="1010" y="158" width="210" height="56" rx="8" fill="#fae3fb" stroke="#a21caf" stroke-width="1.5"/>
+  <text x="1115" y="183" font-size="13" font-weight="600" fill="#111111" text-anchor="middle">AML entity /</text>
+  <text x="1115" y="201" font-size="13" font-weight="600" fill="#111111" text-anchor="middle">watchlist table</text>
+
+  <!-- escalation row -->
+  <rect x="272" y="300" width="190" height="52" rx="8" fill="#fdeeb5" stroke="#a16207" stroke-width="1.5"/>
+  <text x="367" y="331" font-size="14" font-weight="600" fill="#111111" text-anchor="middle">Escalation policy</text>
+
+  <rect x="560" y="292" width="280" height="64" rx="8" fill="#fbd5d5" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="700" y="316" font-size="13.5" font-weight="700" fill="#111111" text-anchor="middle">FastAPI HITL webhook</text>
+  <text x="700" y="336" font-size="12.5" fill="#111111" text-anchor="middle">API-key · rate-limit · req-id</text>
+
+  <rect x="900" y="305" width="190" height="48" rx="8" fill="#fae3fb" stroke="#a21caf" stroke-width="1.5"/>
+  <text x="995" y="334" font-size="13" font-weight="600" fill="#111111" text-anchor="middle">Append-only audit log</text>
+
+  <rect x="560" y="388" width="170" height="46" rx="8" fill="#cdeccd" stroke="#15803d" stroke-width="1.5"/>
+  <text x="645" y="416" font-size="14" font-weight="600" fill="#111111" text-anchor="middle">Auto-cleared</text>
+
+  <!-- edges -->
+  <g stroke="#444" stroke-width="1.6" fill="none">
+    <path d="M215 92 H272" marker-end="url(#arr)"/>
+    <path d="M215 173 C 245 173 250 100 270 95" marker-end="url(#arr)"/>
+    <path d="M560 91 H640" marker-end="url(#arr)"/>
+    <path d="M801 164 V180" marker-end="url(#arr)"/>
+    <path d="M942 90 H1010" marker-end="url(#arr)"/>
+    <path d="M942 203 C 975 203 980 188 1010 186" marker-end="url(#arr)"/>
+    <path d="M342 114 V126 C 342 230 367 250 367 300" marker-end="url(#arr)"/>
+    <path d="M462 326 H560" marker-end="url(#arr)"/>
+    <path d="M367 352 V411 H560" marker-end="url(#arr)"/>
+    <path d="M840 324 H900" marker-end="url(#arr)"/>
+    <path d="M272 99 C 235 99 222 70 215 92" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- edge labels -->
+  <g font-size="12" fill="#111111">
+    <rect x="582" y="78" width="76" height="18" fill="#ffffff"/>
+    <text x="585" y="91">stdio / MCP</text>
+    <rect x="828" y="166" width="118" height="18" fill="#ffffff"/>
+    <text x="831" y="179">resolves internally</text>
+    <rect x="372" y="232" width="62" height="18" fill="#ffffff"/>
+    <text x="375" y="245">risk score</text>
+    <rect x="468" y="312" width="146" height="18" fill="#ffffff"/>
+    <text x="471" y="325">sanctioned / PEP / HIGH</text>
+    <rect x="392" y="400" width="42" height="18" fill="#ffffff"/>
+    <text x="395" y="413">clean</text>
+    <rect x="226" y="58" width="52" height="18" fill="#ffffff"/>
+    <text x="229" y="71">answer</text>
+  </g>
+</svg>
