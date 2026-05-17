@@ -39,44 +39,32 @@
 ## ⟡ Architecture
 
 ```mermaid
-%%{init: {'theme':'dark','themeVariables':{'fontSize':'15px'}}}%%
 flowchart LR
-    U([User / Compliance Q]):::io --> A
-    DEMO[/Single-page demo/]:::io --> A
+    U([User / Compliance Q]) --> A
+    DEMO[/Single-page demo/] --> A
 
-    subgraph AGENT["LangGraph Agent · Claude Sonnet 4.6"]
-        A[ReAct loop]:::agent --> R[Retry guard]:::agent
-        A <--> M[(Session +<br/>vector memory)]:::store
+    subgraph AGENT["LangGraph Agent - Claude Sonnet 4.6"]
+        A[ReAct loop] --> R[Retry guard]
+        A <--> M[(Session + vector memory)]
     end
 
     R -- stdio / MCP --> S
 
     subgraph S["MCP Server"]
-        T1[regulatory_clause_lookup]:::tool
-        T2[compliance_risk_score]:::tool
-        T3[resolve_entity]:::tool
+        T1[regulatory_clause_lookup]
+        T2[compliance_risk_score]
+        T3[resolve_entity]
     end
 
-    T1 --> C[(Chroma · local embeddings<br/>BSA / CIP / OFAC / FATF corpus)]:::store
-    T3 --> E[(AML entity /<br/>watchlist table)]:::store
+    T1 --> C[(Chroma - local embeddings<br/>BSA / CIP / OFAC / FATF corpus)]
+    T3 --> E[(AML entity / watchlist table)]
     T2 -. resolves internally .-> T3
 
-    A -- risk score --> P{Escalation<br/>policy}:::policy
-    P -- sanctioned / PEP / HIGH --> H[FastAPI HITL webhook<br/>API-key · rate-limit · req-id]:::hitl
-    P -- clean --> CLR[Auto-cleared]:::ok
-    H --> AUD[(Append-only<br/>audit log)]:::store
+    A -- risk score --> P{Escalation policy}
+    P -- sanctioned / PEP / HIGH --> H[FastAPI HITL webhook<br/>API-key, rate-limit, req-id]
+    P -- clean --> CLR[Auto-cleared]
+    H --> AUD[(Append-only audit log)]
     A --> U
-
-    classDef io fill:#5b21b6,stroke:#c4b5fd,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef agent fill:#6d28d9,stroke:#ddd6fe,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef tool fill:#0e7490,stroke:#a5f3fc,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef store fill:#a21caf,stroke:#f5d0fe,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef policy fill:#a16207,stroke:#fde047,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef hitl fill:#b91c1c,stroke:#fecaca,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef ok fill:#15803d,stroke:#bbf7d0,stroke-width:2px,color:#ffffff,font-weight:bold;
-
-    style AGENT fill:#241b3d,stroke:#a78bfa,stroke-width:2px,color:#ffffff;
-    style S fill:#0b2e36,stroke:#5eead4,stroke-width:2px,color:#ffffff;
 ```
 
 ## ⟡ Demo
