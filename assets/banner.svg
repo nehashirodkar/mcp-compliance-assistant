@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" font-family="'JetBrains Mono','Courier New',monospace">
+  <defs>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5d0fe"/>
+      <stop offset="45%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#22d3ee" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#a855f7" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="420" fill="#08060f"/>
+  <rect width="1200" height="420" fill="url(#grid)"/>
+  <rect x="2" y="2" width="1196" height="416" fill="none" stroke="#a855f7" stroke-opacity="0.25"/>
+
+  <!-- corner brackets -->
+  <g stroke="#22d3ee" stroke-width="2" fill="none">
+    <path d="M40 70 V40 H70"/>
+    <path d="M1160 70 V40 H1130"/>
+    <path d="M40 350 V380 H70"/>
+    <path d="M1160 350 V380 H1130"/>
+  </g>
+
+  <text x="60" y="62" fill="#7c8298" font-size="13" letter-spacing="6">[ COMPLIANCE.INTELLIGENCE ]</text>
+  <text x="1140" y="62" fill="#7c8298" font-size="13" letter-spacing="4" text-anchor="end">v0.1 · MCP AGENT</text>
+
+  <text x="600" y="225" fill="url(#title)" font-size="130" font-weight="800"
+        letter-spacing="14" text-anchor="middle" filter="url(#glow)">AEGIS</text>
+
+  <text x="600" y="278" fill="#c084fc" font-size="17" letter-spacing="9" text-anchor="middle">
+    AGENTIC · AML / KYC · COMPLIANCE · ASSISTANT
+  </text>
+
+  <path d="M120 305 Q360 270 600 305 T1080 305" stroke="url(#wave)" stroke-width="2" fill="none"/>
+  <circle cx="120" cy="305" r="4" fill="#22d3ee"/>
+  <circle cx="1080" cy="305" r="4" fill="#c084fc"/>
+
+  <g font-size="13" letter-spacing="3">
+    <text x="60" y="372" fill="#7c8298">· TOOLS <tspan fill="#f5d0fe" font-weight="700">3</tspan>
+      &#160; · TESTS <tspan fill="#f5d0fe" font-weight="700">48</tspan>
+      &#160; · DOMAIN <tspan fill="#22d3ee" font-weight="700">BSA / CIP</tspan>
+      &#160; · STATUS <tspan fill="#34d399" font-weight="700">● NOMINAL</tspan></text>
+    <text x="1140" y="372" fill="#7c8298" text-anchor="end">EST.2026 · CYBER-NOIR</text>
+  </g>
+</svg>

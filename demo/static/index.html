@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AEGIS — Agentic AML/KYC Compliance Assistant</title>
+<style>
+  :root{--bg:#08060f;--panel:#0f0b1c;--panel2:#140e26;--line:#2a2140;
+        --txt:#e9e5f7;--mut:#8a83a8;--pur:#c084fc;--cyan:#22d3ee;
+        --grn:#34d399;--red:#fb7185;--amber:#fbbf24}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--txt);
+       font-family:'JetBrains Mono',ui-monospace,'Courier New',monospace;
+       background-image:linear-gradient(#a855f712 1px,transparent 1px),
+       linear-gradient(90deg,#a855f712 1px,transparent 1px);background-size:42px 42px}
+  .wrap{max-width:860px;margin:0 auto;padding:56px 30px 90px}
+  .top{display:flex;align-items:flex-start;justify-content:space-between;
+    flex-wrap:wrap;gap:18px;margin-bottom:8px}
+  h1{font-size:64px;letter-spacing:13px;margin:0 0 14px;line-height:1;
+     background:linear-gradient(120deg,#f5d0fe,#c084fc 45%,#7c3aed);
+     -webkit-background-clip:text;background-clip:text;color:transparent;
+     filter:drop-shadow(0 0 14px #a855f755)}
+  .tag{color:var(--pur);letter-spacing:6px;font-size:13px}
+  .meta{color:var(--mut);font-size:12px;letter-spacing:3px;text-align:right;
+    line-height:2.1;padding-top:6px}
+  .meta b{color:var(--cyan)}
+  .sub{color:var(--mut);letter-spacing:1px;font-size:14.5px;
+    margin:34px 0 18px;line-height:1.7}
+  textarea{width:100%;height:110px;background:var(--panel);color:var(--txt);
+    border:1px solid var(--line);border-radius:12px;padding:18px;resize:vertical;
+    font-family:inherit;font-size:16px;line-height:1.6;outline:none}
+  textarea:focus{border-color:var(--pur)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 2px}
+  .chip{cursor:pointer;font-size:12.5px;color:var(--mut);border:1px solid var(--line);
+    border-radius:20px;padding:8px 14px;background:#120d22;transition:.15s}
+  .chip:hover{color:var(--cyan);border-color:var(--cyan);transform:translateY(-1px)}
+  button{margin-top:22px;background:linear-gradient(120deg,#7c3aed,#c084fc);
+    color:#fff;border:0;border-radius:10px;padding:15px 38px;font-family:inherit;
+    font-weight:700;letter-spacing:3px;cursor:pointer;font-size:15px}
+  button:disabled{opacity:.5;cursor:wait}
+
+  .pipe{display:flex;gap:10px;margin:42px 0 10px;flex-wrap:wrap}
+  .pp{flex:1;min-width:120px;text-align:center;font-size:11.5px;letter-spacing:2px;
+    color:#4c4566;border-top:2px solid #241c3a;padding:14px 4px;transition:.3s}
+  .pp.on{color:var(--cyan);border-color:var(--cyan)}
+  .pp.done{color:var(--grn);border-color:var(--grn)}
+  .pp .d{font-size:18px;margin-bottom:3px}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:22px 24px;margin-top:20px;animation:rise .35s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lbl{font-size:11.5px;letter-spacing:3px;color:var(--mut);margin-bottom:12px}
+  .ans{line-height:1.7;font-size:15.5px}
+  .ans b{color:#fff}
+  .verdict{font-size:18px;font-weight:700;margin-bottom:10px}
+
+  .tool{border-left:2px solid var(--cyan);padding:4px 0 4px 14px;margin:14px 0}
+  .tool .tn{color:var(--cyan);font-weight:700;font-size:14px}
+  .pill{display:inline-block;font-size:11.5px;padding:4px 11px;border-radius:20px;
+    margin:6px 7px 0 0;letter-spacing:1px}
+  .pill.bad{background:#3a141d;color:var(--red);border:1px solid var(--red)}
+  .pill.ok{background:#10301f;color:var(--grn);border:1px solid var(--grn)}
+  .pill.dim{background:#1b1530;color:var(--mut);border:1px solid var(--line)}
+  .fact{color:var(--mut);font-size:13.5px;margin:5px 0;padding-left:12px;
+    line-height:1.55;border-left:1px solid var(--line)}
+  .cite{color:var(--pur);font-weight:700;font-size:15px}
+  .snip{color:var(--mut);font-size:13.5px;margin:3px 0 10px;line-height:1.55}
+  .esc{border-color:var(--red);box-shadow:0 0 0 1px #fb718533}
+  .esc .lbl{color:var(--red)}
+  .clr{border-color:var(--grn)}.clr .lbl{color:var(--grn)}
+  .rsn li{color:#ffb3bf;font-size:14px;margin:5px 0;line-height:1.5}
+  .cid{color:var(--amber);font-size:13px;letter-spacing:1px}
+  .spin{color:var(--cyan);font-size:14px}
+  .dot{animation:bl 1s steps(3) infinite}
+  @keyframes bl{to{clip-path:inset(0 0 0 100%)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div><h1>AEGIS</h1><div class="tag">AGENTIC · AML / KYC · COMPLIANCE</div></div>
+    <div class="meta">MCP · LANGGRAPH · CLAUDE SONNET 4.6<br/>
+      ACCURACY <b>95.8%</b> · TESTS <b>48</b> · STATUS <b>● NOMINAL</b></div>
+  </div>
+  <div class="sub">Resolve the customer → score AML risk → cite the BSA rule → escalate if high-risk.</div>
+
+  <textarea id="q" placeholder="Ask a compliance question…">Assess onboarding risk for a new customer 'Volkov Petrochem' opening a wire-transfer account. Cite the rule.</textarea>
+  <div class="row" id="chips"></div>
+  <button id="go" onclick="ask()">▶ ANALYZE</button>
+
+  <div class="pipe" id="pipe"></div>
+  <div id="out"></div>
+</div>
+<script>
+const STAGES=[["⊚","ENTITY"],["⚖","RISK SCORE"],["§","CLAUSE LOOKUP"],["⬡","HITL DECISION"]];
+const pipe=document.getElementById('pipe');
+STAGES.forEach(([d,n])=>{pipe.insertAdjacentHTML('beforeend',
+ `<div class="pp"><div class="d">${d}</div>${n}</div>`);});
+const PP=[...document.querySelectorAll('.pp')];
+
+const SAMPLES=[
+ "Assess onboarding risk for 'Volkov Petrochem' opening a wire-transfer account. Cite the rule.",
+ "Customer 'Amara Okonkwo' is opening an account — score the risk and cite the obligation.",
+ "What identity and beneficial-ownership info must we collect for a legal-entity customer?",
+ "When must a bank file a CTR for cash deposits?"
+];
+const chips=document.getElementById('chips');
+SAMPLES.forEach(s=>{const c=document.createElement('div');c.className='chip';
+ c.textContent=s.length>50?s.slice(0,50)+'…':s;
+ c.onclick=()=>document.getElementById('q').value=s;chips.appendChild(c);});
+
+const esc=t=>(t||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+const md=t=>esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br/>');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+function dig(r){ // mirror server _extract_dict: dict | json str | content blocks
+  try{
+    if(typeof r==='string')return dig(JSON.parse(r));
+    if(Array.isArray(r)){for(const i of r){const g=dig(i&&i.text!==undefined?i.text:i);if(g)return g;}return null;}
+    if(r&&typeof r==='object')return r;
+  }catch(e){}
+  return null;
+}
+
+function setStage(i,cls){PP.forEach((p,k)=>{if(k<i)p.className='pp done';});
+  if(PP[i])PP[i].className='pp '+cls;}
+
+async function ask(){
+  const q=document.getElementById('q').value.trim();if(!q)return;
+  const out=document.getElementById('out'),btn=document.getElementById('go');
+  btn.disabled=true;out.innerHTML='';
+  PP.forEach(p=>p.className='pp');
+  out.innerHTML='<div class="card"><span class="spin">▶ agent running<span class="dot">…</span></span></div>';
+  let d;
+  try{
+    const res=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({question:q})});
+    d=await res.json();
+  }catch(err){out.innerHTML='<div class="card esc"><div class="lbl">ERROR</div>'+esc(String(err))+'</div>';btn.disabled=false;return;}
+
+  // Staged reveal for screen capture.
+  out.innerHTML='';
+  const usedRisk=d.steps.some(s=>s.tool==='compliance_risk_score');
+  const usedClause=d.steps.some(s=>s.tool==='regulatory_clause_lookup');
+
+  setStage(0,'on');await sleep(450);
+  // entity (from risk score payload)
+  const rs=d.steps.find(s=>s.tool==='compliance_risk_score');
+  const rd=rs?dig(rs.result):null;
+  if(rd){
+    let flags='';
+    flags+=`<span class="pill ${rd.sanctioned?'bad':'dim'}">SANCTIONED ${rd.sanctioned?'YES':'no'}</span>`;
+    flags+=`<span class="pill ${rd.pep?'bad':'dim'}">PEP ${rd.pep?'YES':'no'}</span>`;
+    flags+=`<span class="pill ${rd.watchlist?'bad':'dim'}">WATCHLIST ${rd.watchlist?'YES':'no'}</span>`;
+    out.insertAdjacentHTML('beforeend',
+     `<div class="card"><div class="lbl">ENTITY RESOLUTION</div>
+      <div><b>${esc(rd.resolved_entity||(rs.args&&rs.args.entity)||'—')}</b></div>${flags}</div>`);
+  }
+  setStage(1,usedRisk?'on':'done');await sleep(450);
+  if(rd){
+    const band=(rd.band||'').toUpperCase();
+    const bc=band==='HIGH'?'bad':band==='MEDIUM'?'dim':'ok';
+    out.insertAdjacentHTML('beforeend',
+     `<div class="card"><div class="lbl">RISK SCORE</div>
+      <div class="verdict">${(rd.score??0).toFixed(2)} / 1.00
+        <span class="pill ${bc}">${band||'N/A'}</span></div>
+      ${(rd.factors||[]).map(f=>`<div class="fact">${esc(f)}</div>`).join('')}</div>`);
+  }
+  setStage(2,usedClause?'on':'done');await sleep(450);
+  const clauses=d.steps.filter(s=>s.tool==='regulatory_clause_lookup');
+  if(clauses.length){
+    let body='';
+    clauses.forEach(s=>{const cd=dig(s.result);const arr=(cd&&cd.clauses)||[];
+      arr.slice(0,2).forEach(cl=>{body+=`<div class="cite">${esc(cl.citation)}</div>
+        <div class="snip">${esc((cl.text||'').slice(0,150))}…</div>`;});});
+    out.insertAdjacentHTML('beforeend',
+     `<div class="card"><div class="lbl">REGULATORY CITATIONS</div>${body||'<span class="snip">—</span>'}</div>`);
+  }
+
+  // HITL
+  const e=d.escalation;
+  setStage(3,'done');
+  if(e&&e.escalated){
+    out.insertAdjacentHTML('beforeend',
+     `<div class="card esc"><div class="lbl">⚠ ESCALATED TO HUMAN REVIEW</div>
+      <div class="cid">${esc(e.case_id)} · audit row written (append-only)</div>
+      <ul class="rsn">${e.reasons.map(r=>'<li>'+esc(r)+'</li>').join('')}</ul></div>`);
+  }else if(e){
+    out.insertAdjacentHTML('beforeend',
+     `<div class="card clr"><div class="lbl">✓ AUTO-CLEARED</div>
+      <div class="snip">No escalation — within policy thresholds.</div></div>`);
+  }
+
+  out.insertAdjacentHTML('beforeend',
+   `<div class="card"><div class="lbl">AGENT ANSWER</div><div class="ans">${md(d.answer)}</div></div>`);
+  btn.disabled=false;
+}
+document.getElementById('q').addEventListener('keydown',e=>{if(e.ctrlKey&&e.key==='Enter')ask();});
+</script>
+</body>
+</html>

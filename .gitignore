@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.chroma/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.langsmith/
+
+# HITL audit trail — runtime compliance records, never committed
+.audit/
+audit_log.jsonl
+*.audit.jsonl
+
+# Eval run artifacts (full agent answers); summary numbers live in README
+evals/results/
+
+# Local secrets file lives OUTSIDE the repo, but guard anyway
+.mcp-compliance.env
+*.secret

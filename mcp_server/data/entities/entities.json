@@ -1,0 +1,102 @@
+[
+  {
+    "entity_id": "ENT-1001",
+    "canonical_name": "Northwind Trading LLC",
+    "aliases": ["Northwind Trading", "Northwind Trade Co", "NW Trading LLC"],
+    "type": "organization",
+    "jurisdiction": "US",
+    "pep": false,
+    "sanctioned": false,
+    "watchlist": false
+  },
+  {
+    "entity_id": "ENT-1002",
+    "canonical_name": "Helios Capital Partners",
+    "aliases": ["Helios Capital", "Helios Partners LP", "Helios Cap"],
+    "type": "organization",
+    "jurisdiction": "US",
+    "pep": false,
+    "sanctioned": false,
+    "watchlist": false
+  },
+  {
+    "entity_id": "ENT-2001",
+    "canonical_name": "Volkov Petrochemical OAO",
+    "aliases": ["Volkov Petrochem", "Volkov Petro", "OAO Volkov Petrochemical"],
+    "type": "organization",
+    "jurisdiction": "RU",
+    "pep": false,
+    "sanctioned": true,
+    "watchlist": true
+  },
+  {
+    "entity_id": "ENT-2002",
+    "canonical_name": "Dmitri A. Sokolov",
+    "aliases": ["Dmitri Sokolov", "D. Sokolov", "Dmitry Sokolov"],
+    "type": "individual",
+    "jurisdiction": "RU",
+    "pep": true,
+    "sanctioned": true,
+    "watchlist": true
+  },
+  {
+    "entity_id": "ENT-2003",
+    "canonical_name": "Crescent Maritime Holdings",
+    "aliases": ["Crescent Maritime", "Crescent Shipping Holdings"],
+    "type": "organization",
+    "jurisdiction": "IR",
+    "pep": false,
+    "sanctioned": true,
+    "watchlist": true
+  },
+  {
+    "entity_id": "ENT-3001",
+    "canonical_name": "Amara Okonkwo",
+    "aliases": ["Amara N. Okonkwo", "A. Okonkwo"],
+    "type": "individual",
+    "jurisdiction": "NG",
+    "pep": true,
+    "sanctioned": false,
+    "watchlist": true
+  },
+  {
+    "entity_id": "ENT-3002",
+    "canonical_name": "Banco del Sur S.A.",
+    "aliases": ["Banco del Sur", "Banco Sur SA", "BDS"],
+    "type": "organization",
+    "jurisdiction": "PA",
+    "pep": false,
+    "sanctioned": false,
+    "watchlist": true
+  },
+  {
+    "entity_id": "ENT-1003",
+    "canonical_name": "Greenfield Logistics Inc",
+    "aliases": ["Greenfield Logistics", "Greenfield Freight Inc"],
+    "type": "organization",
+    "jurisdiction": "US",
+    "pep": false,
+    "sanctioned": false,
+    "watchlist": false
+  },
+  {
+    "entity_id": "ENT-1004",
+    "canonical_name": "Mariana Costa",
+    "aliases": ["Mariana R. Costa", "M. Costa"],
+    "type": "individual",
+    "jurisdiction": "BR",
+    "pep": false,
+    "sanctioned": false,
+    "watchlist": false
+  },
+  {
+    "entity_id": "ENT-2004",
+    "canonical_name": "Zenith Arms Manufacturing",
+    "aliases": ["Zenith Arms", "Zenith Weapons Mfg", "Zenith Armaments"],
+    "type": "organization",
+    "jurisdiction": "KP",
+    "pep": false,
+    "sanctioned": true,
+    "watchlist": true
+  }
+]
