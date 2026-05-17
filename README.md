@@ -140,8 +140,3 @@ tests/        48 tests — tools, retrieval, agent, memory, HITL, security
 - [x] **Phase 7** — FastAPI HITL escalation + append-only audit trail
 - [x] **Phase 8** — hardening: API-key auth, rate limiting, request-id logging
 - [x] **Demo** — single-page UI, live-validated
-
-<div align="center">
-<br/>
-<sub>Built by <a href="https://github.com/nehashirodkar">Neha Shirodkar</a> with the Claude Agent SDK</sub>
-</div>
